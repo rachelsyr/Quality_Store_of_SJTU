@@ -6,7 +6,7 @@
 
 {% block body %}
     <form action="" method="post">
-{#        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">#}
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         {% csrf_token %}
         <table>
             <tbody>

@@ -78,10 +78,15 @@ WSGI_APPLICATION = 'Quality_Store_of_SJTU.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# 按照类似于user的方法创建一个新的数据库连接，然后在下面的DATABASE_APPS_MAPPING中添加对应关系，操作权限我已经写好了 hhj
 DATABASES = {
+    'user':{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'user.sqlite3'),
+    },
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # 不要修改这个，前台需要使用session表
     }
 }
 
@@ -128,3 +133,12 @@ INTERNAL_IPS = ['127.0.0.1']
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'medias')
 MEDIA_URL = '/media/'
+
+DATABASE_ROUTERS = ['Quality_Store_of_SJTU.database_router.DatabaseAppsRouter']
+
+DATABASE_APPS_MAPPING = {
+    # example:
+    # 'app_name':'database_name',
+    'front': 'user',
+}
+

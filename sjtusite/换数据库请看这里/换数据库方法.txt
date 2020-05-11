@@ -1,0 +1,25 @@
+1、相关链接：https://conyli.cc/chapter03.html（从这个教程的4.1开始）
+
+2、概括下来就是：
+（1）安装PG和与和python的接口psycopg2
+（接口一般来说数据库自带，我是直接从官网上下的第12版本，安装后会有pgadmin4和sql shell两种方式对数据库操作）
+windows版本分享连接（官网比较慢，可以用这个）：https://jbox.sjtu.edu.cn/l/uoaCZb
+官网下载链接：https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+安装步骤连接：https://www.runoob.com/postgresql/windows-install-postgresql.html
+
+（2）使用PG的命令行窗口sql shell 来新建用户同时设置密码，新建数据库并关联到用户，将数据库的所有权限授权到数据库
+    相关的语句:https://www.cnblogs.com/weihengblog/p/10082570.html
+
+（3）数据库建好之后，用shell连接到数据库并CREATE EXTENSION pg_trgm，使得可以允许三元相似性搜索
+
+（4）最后在settings里设置数据库
+            DATABASES = {
+                            'default': {
+                                'ENGINE': 'django.db.backends.postgresql',
+                                'NAME': 'sjtudb',
+                                'USER': 'sjtumanager',
+                                'PASSWORD': 'dishisixiaozu',
+                            }
+                        }
+
+3.使用数据库的方式和sqlite没有差异，因为接口都是做好的。

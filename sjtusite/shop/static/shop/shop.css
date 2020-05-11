@@ -1,0 +1,27 @@
+ul.shop-types {
+    list-style-type: none
+}
+div.shop:not(:last-child) {
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #eee;
+}
+div.shop h3 {
+    margin-top: 0.5em;
+}
+div.shop p.shop-info {
+    margin-bottom: 0;
+}
+
+ul.shop-info-description {
+    list-style-type: none;
+    margin-bottom: 2em;
+}
+
+ul.shop-info-description li {
+    display: inline-block;
+}
+
+div.shop-content {
+    text-indent: 0em;
+}

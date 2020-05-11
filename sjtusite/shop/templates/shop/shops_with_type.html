@@ -1,0 +1,12 @@
+{% extends 'shop/shop_list.html' %}
+
+{% block title %}
+    {{ shop_type.type_name }}
+{% endblock %}
+
+{% block shop_list_title %}
+    分类：{{ shop_type.type_name }}
+    <a href="{% url 'shop:shop_list' %}">查看全部店铺</a>
+    <h5 class="text-right"><a href="{% url 'discount:discount_type' shop_type.pk %}">显示优惠信息</a></h5>
+{% endblock %}
+

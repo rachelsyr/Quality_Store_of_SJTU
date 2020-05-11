@@ -1,0 +1,41 @@
+<!---还没有具体地渲染--->
+{% extends 'base.html' %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+
+    {% if query %}<!--如果query有值，则进行查询-->
+        <h1>包含关键词{{ query }}的店铺</h1>
+            <h3><!!>
+            {% with results.count as total_results %}
+                Found {{ total_results }} result{{ total_results|pluralize }}
+            {% endwith %}
+            </h3>
+
+        <!--循环显示查询结果，并生成对应结果标题的超链接-->
+        {% for shop in results %}
+            <h4>
+                <a href="{{ shop.get_absolute_url }}">{{ shop.name}}</a>
+            </h4>
+            {{ shop.content|truncatewords:5 }}
+        {% empty %}
+            <p>There are no results for your query.</p>
+        {% endfor %}
+
+        <!重新查询的链接!>
+        <p><a href="{% url 'shop:shop_search' %}">Search again</a></p>
+
+    {% else %}<!--还没有提交表单前的表单页面-->
+        <h1>Search for shops</h1>
+
+        <form action="." method="get">
+        {{ form.as_p }}<!此处会由form模板生成表单的界面!>
+            <!以下会生成一个提交按钮!>
+            <input type="submit" value="搜索">
+        </form>
+    {% endif %}
+
+{% endblock %}

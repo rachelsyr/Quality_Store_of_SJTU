@@ -1,0 +1,169 @@
+#encoding: utf-8
+
+from django.shortcuts import render,redirect,reverse
+from django.http import HttpResponse
+from django.views.generic import View
+from .forms import SignupForm,SigninForm,SignupFormOwner,SigninFormOwner
+from .models import User, Owner
+from django.template.context_processors import debug
+from django.contrib.auth.context_processors import auth
+from django.contrib import messages
+# from django.contrib.messages.context_processors import messages
+
+def index(request):
+    # user_id = request.session.get('user_id')
+    # context = {}
+    # try:
+    #     user = User.objects.get(pk=user_id)
+    #     context['front_user'] = user
+    # except:
+    #     pass
+    # users = User.objects.all()
+    # for user in users:
+    #     print(user)
+    return render(request, 'front_index.html')
+
+
+class SigninView(View):
+    def get(self,request):
+        return render(request, 'front_signin.html')
+
+    def post(self,request):
+        form = SigninForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = User.objects.filter(username=username,password=password).first()
+            if user:
+                request.session['user_id'] = user.id
+                return redirect(reverse('home'))
+            else:
+                print('用户名或者密码错误！')
+                # messages.add_message(request,messages.INFO,'用户名或者密码错误！')
+                messages.info(request,'用户名或者密码错误！')
+                return redirect(reverse('front:signin'))
+        else:
+            # errors = form.errors.get_json_data()
+            # print(errors)
+            errors = form.get_error()
+            for error in errors:
+                messages.info(request,error)
+            return redirect(reverse('front:signin'))
+
+
+class SignupView(View):
+    def get(self,request):
+        print(type(request._messages))
+        return render(request, 'front_signup.html')
+
+    def post(self,request):
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('home'))
+        else:
+            print(form.errors.get_json_data())
+            return redirect(reverse('front:signup'))
+
+
+class SigninView_Owner(View):
+    def get(self,request):
+        return render(request, 'front_signin_owner.html')
+
+    def post(self,request):
+        form = SigninFormOwner(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = Owner.objects.filter(username=username,password=password).first()
+            if user:
+                request.session['owner_id'] = user.id
+                return redirect(reverse('home'))
+            else:
+                print('用户名或者密码错误！')
+                # messages.add_message(request,messages.INFO,'用户名或者密码错误！')
+                messages.info(request,'用户名或者密码错误！')
+                return redirect(reverse('front:signinowner'))##
+        else:
+            # errors = form.errors.get_json_data()
+            # print(errors)
+            errors = form.get_error()
+            for error in errors:
+                messages.info(request,error)
+            return redirect(reverse('front:signinowner'))
+
+
+class SignupView_Owner(View):
+    def get(self,request):
+        return render(request, 'front_signup_owner.html')
+
+    def post(self,request):
+        print(request.POST)
+        form = SignupFormOwner(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('home'))##
+        else:
+            print(form.errors.get_json_data())
+            return redirect(reverse('front:signupowner'))
+
+
+#验证是否登录的装饰器
+def check_user(func):
+    def inner(*args, **kwargs):
+        #判断是否登录
+        username = args[0].session.get("user_id", "")
+        if username == "":
+            username = args[0].session.get("owner_id", "")
+        if username == "":
+            #保存当前的url到session中
+            args[0].session["path"] = args[0].path
+            #重定向到登录页面
+            return redirect(reverse("front:signin"))
+        return func(*args, **kwargs)
+
+    return inner
+
+def check_owner(func):
+    def inner(*args, **kwargs):
+        #判断是否登录
+        username = args[0].session.get("owner_id", "")
+        if username == "":
+            #保存当前的url到session中
+            args[0].session["path"] = args[0].path
+            #重定向到登录页面
+            return redirect(reverse("front:signinowner"))
+        return func(*args, **kwargs)
+
+    return inner
+
+@check_user
+def blog(request):
+    return render(request, 'front_blog.html')
+
+@check_owner
+def video(request):
+    return render(request, 'front_video.html')
+
+def logout(request):
+    request.session.flush()
+    return redirect(reverse('home'))
+
+class User_detail(View):
+    def get(self,request):
+        context = {}
+        user_id = request.session.get('user_id')
+        user = User.objects.get(pk=user_id)
+        context['user'] = user
+        return render(request, 'front_user_detail.html', context=context)
+
+    def post(self,request):
+        user_id = request.session.get('user_id')
+        username = request.POST.get('username')
+        telephone = request.POST.get('telephone')
+        password = request.POST.get('password')
+        gender = request.POST.get('gender')
+        # messages.add_message(request, messages.INFO, '性别输入错误')
+        introduction = request.POST.get('introduction')
+        User.objects.filter(pk=user_id).update(username=username,telephone=telephone,gender=gender,introduction=introduction)
+        return redirect(reverse('home'))

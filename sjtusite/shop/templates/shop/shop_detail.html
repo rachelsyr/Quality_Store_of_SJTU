@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load comments_extras %}
+
+{% block title %}
+    {{ shop.name }}
+{% endblock %}
+
+{% block 'nav_shop_active' %}active{% endblock %}
+
+{% load static  %}
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'shop/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        {{ message }}
+      </div>
+    {% endfor %}
+{% endif %}
+
+
+    <div class="container">
+        <div class="row">  
+            <div class="col-xs-10 col-xs-offset-1">
+                <h3>{{ shop.name }}</h3>
+                <ul class="shop-info-description">
+                    <li>分类： 
+                        <a href="{% url 'shop:shop_with_type' shop.shop_type.pk %}">
+                            {{ shop.shop_type }}
+                        </a>
+                    </li>
+                </ul>   
+                <div class="shop-content">{{ shop.content|linebreaksbr }}</div>
+            </div>
+        </div>
+    </div>
+    <!--section class="comment-area" id="comment-area">#新增评论区模块-->
+    <hr>
+    <h4><a href="{% url 'discount:discount_detail' shop.pk %}">显示优惠信息</a></h4>
+    <hr>
+      <h3>发表评论</h3>
+    {% show_comment_form shop %}
+    <div class="comment-list-panel">
+    {% show_comments shop %}
+</div>
+    </section>
+
+{% endblock %} 

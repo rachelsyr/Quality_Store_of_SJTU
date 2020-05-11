@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block title %}
+    交大优铺|首页
+{% endblock %}
+
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock %}
+
+{% block nav_home_active %}active{% endblock %}
+
+{% block content %}
+    <<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="col-xs-4">
+			<div class="hero-unit well">
+				<h2>
+					吃的!
+				</h2>
+				<p>
+					好吃的东西.
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="{% url 'shop:shop_with_type' 1 %}">更多 »</a>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="hero-unit well">
+				<h2>
+					喝的!
+				</h2>
+				<p>
+					好喝的东西.
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="{% url 'shop:shop_with_type' 2 %}">更多 »</a>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="hero-unit well">
+				<h2>
+					玩的!
+				</h2>
+				<p>
+					好玩的东西.
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="{% url 'shop:shop_with_type' 3 %}">更多 »</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="col-xs-4">
+			<div class="hero-unit well">
+				<h2>
+					学习!
+				</h2>
+				<p>
+					学在交大.
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="{% url 'shop:shop_with_type' 4 %}">更多 »</a>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="hero-unit well">
+				<h2>
+					生活!
+				</h2>
+				<p>
+					便捷生活.
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="{% url 'shop:shop_with_type' 5 %}">更多 »</a>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="hero-unit well">
+				<h2>
+					打扮!
+				</h2>
+				<p>
+					打扮自己.
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="{% url 'shop:shop_with_type' 6 %}">更多 »</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

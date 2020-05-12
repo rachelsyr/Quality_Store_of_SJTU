@@ -12,42 +12,128 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 col-md-8">
+            <div class="col-sm-6 col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="text-align:middle">
                         {% block shop_list_title %}
-                            店铺列表（一共有{{ shops|length }}个店铺）
-                            <h5 class="text-right"><a href="/discount/shop/">显示优惠信息</a></h5>
+                           <h3 style="text-align:middle"> 店铺列表（一共有{{ shop_num }}个店铺）</h3>
+                            <h5 class="text-align:middle"><a href="/discount/shop/">显示优惠信息</a></h5>
                         {% endblock %}
                     </div>
                     <div class="panel-body">
+                        <!--修改前
                          {% for shop in shops %}
                             <div class="shop">
                                 <h3><a href="{% url 'shop:shop_detail' shop.pk %}">{{ shop.name }}</a></h3>
                                 <p class="shop-info">
-                                    <span class="glyphicon glyphicon-tag"></span><a href="{% url 'shop:shop_with_type' shop.shop_type.pk %}">{{ shop.shop_type }}</a>
+                                    <span class="glyphicon glyphicon-tag"></span>  
+                                    <a href="{% url 'shop:shop_with_type' shop.shop_type.pk %}">{{ shop.shop_type }}</a>
                                 </p>
                                 <p>{{ shop.content|truncatechars:50|linebreaksbr }}</p>
                             </div>
-                        {% endfor %}
+                         {% endfor %}
+                        -->
+                        <div class="row">
+                            {% for shop in shops %}
+                                <div class="col-xs-12 col-md-4 ">
+                                    <div class="thumbnail">
+                                            
+                                        <div class="caption"  style="text-align:center">
+                                            
+                                            <h3  ><a href="{% url 'shop:shop_detail' shop.pk %}" >{{ shop.name }}</a></h3>
+
+                                            <p class="shop-info">
+                                                <span class="glyphicon glyphicon-tag"></span>  
+                                                <a href="{% url 'shop:shop_with_type' shop.shop_type.pk %}">{{ shop.shop_type }}</a>
+                                            </p>
+                                            <div class="col-sm-12 col-md-12">
+                                            <p>{{ shop.content|truncatechars:10|linebreaksbr }}</p>
+                                            </div>
+                                            <p>
+                                                <a href="{% url 'shop:shop_detail' shop.pk %}" class="btn btn-primary" role="button">进店</a>
+                                            </p>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            {% endfor %}      
+                        </div>
+
+                        <!---修改前
+                        <section id="portfolio">
+                            <div class="container-fluid masonry-wrapper scrollimation fade-in in">
+                              <div id="projects-container" class="masonry">
+                                <a class="project-item masonry-brick" data-images="http://www.meweidea.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f388959c0ec7c5ccd3d2a47d49c388035065ff31/10.jpg,http://www.meweidea.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b19ddd545808baa465cd76ecfcb1e96f28e4d37/10-2.jpg,http://www.meweidea.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f34397f05e583887e0ee02868a98428addb17f85/10-1.jpg">
+                                  <img class="img-responsive project-image" src="http://www.meweidea.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f388959c0ec7c5ccd3d2a47d49c388035065ff31/10.jpg" alt="">
+                                  <div class="hover-mask">
+                                    <h2 class="project-title">途家盛捷服务公寓</h2>
+                                    <p>品牌（LOGO/VI）</p>
+                                  </div>
+                                  <div class="sr-only project-description">
+                                    品牌（LOGO/VI）
+                                  </div>
+                                </a>
+                            </div>
+                        </section>
+                        -->
+                        <!--分页功能-->
+                        <script>
+                            function jianyi(x){
+                            return (x<=1?1:x-1)
+                            }
+                        </script>
+                        <nav aria-label="Page navigation" style="text-align:center">
+                            <ul class="pagination">
+                              <li>
+                                <a href="?page=javascrip:jianyi(page)" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                </a>
+                              </li>
+                              {% for page_num in all_page %}
+                              <li><a href="?page={{page_num}}">{{page_num}}</a></li>  
+                              {% endfor %}  
+                              <li>
+                                <a href="#" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+
                     </div>
                 </div>
-               
             </div>
-            <div class="col-sm-4 col-md-4">
+
+            <div class="col-sm-8 col-md-4">
                 <div class="panel panel-default">
-                  <div class="panel-heading">店铺分类</div>
+                  <div class="panel-heading" style="text-align:center"><h3>店铺分类</h3></div>
                   <div class="panel-body">
-                    <ul class="shop-types">
-                        {% for shop_type in shop_types %}
-                            <li><a href="{% url 'shop:shop_with_type' shop_type.pk %}">{{ shop_type.type_name }}</a></li>
-                        {% endfor %}
-                    </ul>
+                      <div><br><br><br><br><br><br><br></div>
+                      
+                    <div class="shop-types">
+                       
+                        <div class="row">
+                            
+                            {% for shop_type in shop_types %}
+                            <div class="col-sm-3 col-md-4" style="text-align:middle">
+                                {% if shop_type.pk %} <div><br></div>{% endif %}
+                                <!--<li><a href="{% url 'shop:shop_with_type' shop_type.pk %}" role="button">{{ shop_type.type_name }}</a></li>-->
+                                <a type="button" href="{% url 'shop:shop_with_type' shop_type.pk %}" class="btn btn-default" role="button">
+                                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span> {{ shop_type.type_name }}
+                                </a>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                        </div>
                   </div>
                 </div>
             </div>
+
         </div>
     </div>
-
+    
+    
 
 {% endblock %}

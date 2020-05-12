@@ -6,36 +6,78 @@ Search
 {% endblock %}
 
 {% block content %}
-
+    
     {% if query %}<!--如果query有值，则进行查询-->
-        <h1>包含关键词{{ query }}的店铺</h1>
-            <h3><!!>
-            {% with results.count as total_results %}
-                Found {{ total_results }} result{{ total_results|pluralize }}
-            {% endwith %}
-            </h3>
+        <div class="jumbotron" >
+            <div class="row" style="text-align:center">
+                <div class="col-sm-12 col-md-10 col-md-offset-1" style="text-align:center"  >
+                    <div class="panel panel-default" style="color: rgba(224, 255, 255, 0.719);background-image:url(/static/photo/sousuo4.jpeg);background-size:100%">
+                        <div class="panel-heading" style="background-color: rgba(209, 209, 209, 0.719)">
+                            <h2 style="text-align:middle"> "{{ query }}"相关店铺</h2>
+                            <h3>
+                                {% with results.count as total_results %}
+                                    Found {{ total_results }} result{{ total_results|pluralize }}
+                                {% endwith %}
+                            </h3>
+                            <!--重新查询的链接-->
+                            <a type="button" href="{% url 'shop:shop_search' %}" class="btn btn-default" role="button">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search again
+                            </a>
+                        </div>
 
-        <!--循环显示查询结果，并生成对应结果标题的超链接-->
-        {% for shop in results %}
-            <h4>
-                <a href="{{ shop.get_absolute_url }}">{{ shop.name}}</a>
-            </h4>
-            {{ shop.content|truncatewords:5 }}
-        {% empty %}
-            <p>There are no results for your query.</p>
-        {% endfor %}
+                        <div class="panel-body">
+                            {% for shop in results %}
+                                <div class="col-xs-12 col-md-3 ">
+                                    <div class="thumbnail">
+                                            
+                                    <div class="caption"  style="text-align:center">
+                                            
+                                            <h3  ><a href="{% url 'shop:shop_detail' shop.pk %}" >{{ shop.name }}</a></h3>
 
-        <!重新查询的链接!>
-        <p><a href="{% url 'shop:shop_search' %}">Search again</a></p>
+                                            <p class="shop-info">
+                                                <span class="glyphicon glyphicon-tag"></span>  
+                                                <a href="{% url 'shop:shop_with_type' shop.shop_type.pk %}">{{ shop.shop_type }}</a>
+                                            </p>
+                                            
+                                            <p style="font-size: small;">{{ shop.content|truncatechars:10|linebreaksbr }}</p>
+            
+                                            <p>
+                                                <a href="{% url 'shop:shop_detail' shop.pk %}" class="btn btn-primary" role="button">进店</a>
+                                            </p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}  
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    
     {% else %}<!--还没有提交表单前的表单页面-->
-        <h1>Search for shops</h1>
+        <div class="jumbotron" style="background-image:url(/static/photo/sousuo.jpeg);background-size:100%">
+            <div class="container">
+                <div><br><br><br><br></div>
+                <h1  class ="text-center" style="color: lightcyan;">交大优铺</h1>
+                <form action="." method="get"  class ="text-center" style="color: rgb(0, 0, 0);">
+                    {{ form.as_p }}<!此处会由form模板生成表单的界面!>
+                        <!--以下会生成一个提交按钮-->
+                        <a type="button"  class="btn btn-default" role="button">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            <input type="submit" value="搜索">
+                        </a>
+                </form>
+            <div><br><br></div>
+            </div>
+        </div>
+           
 
-        <form action="." method="get">
-        {{ form.as_p }}<!此处会由form模板生成表单的界面!>
-            <!以下会生成一个提交按钮!>
-            <input type="submit" value="搜索">
-        </form>
+       
     {% endif %}
 
 {% endblock %}

@@ -15,9 +15,22 @@ def shop_list(request):
     #------------------------实现分页
     shop_list = Shop.objects.all()
     paginator = Paginator(shop_list, 6)  # 每页显示3篇文章
-    page = request.GET.get('page')#页数请求
+    page = request.GET.get('page') #页数请求
+
     context['shop_num']=len(shop_list)
-    context['page']=page
+    #为了实现向前翻页和向后翻页，新增一个模块，计算前一页和后一页的页数
+    if page==None:
+        context['page'] =1
+    else:context['page']=int(page)
+       
+    if (context['page']>=2) :
+        context['previous_page'] = context['page']-1
+    else : context['previous_page'] = 1
+
+    if context['page'] < paginator.num_pages:
+        context['next_page']= context['page']+1
+    else:  context['next_page'] = paginator.num_pages
+
     context['all_page'] = list (range(1,paginator.num_pages+1))#生成页数序列
     try:
         context['shops'] = paginator.page(page)
@@ -48,8 +61,20 @@ def shop_with_type(request, shop_type_pk):
     context['shop_num']=len(context['shops'])
     paginator = Paginator(context['shops'] , 6) 
     page = request.GET.get('page')
-    context['page']=page
     context['all_page'] = list (range(1,paginator.num_pages+1))#生成页数序列
+
+    #为了实现向前翻页和向后翻页，新增一个模块，计算前一页和后一页的页数
+    if page==None:
+        context['page'] =1
+    else:context['page']=int(page)
+       
+    if (context['page']>=2) :
+        context['previous_page'] = context['page']-1
+    else : context['previous_page'] = 1
+
+    if context['page'] < paginator.num_pages:
+        context['next_page']= context['page']+1
+    else:  context['next_page'] = paginator.num_pages
 
     try:
         context['shops'] = paginator.page(page)

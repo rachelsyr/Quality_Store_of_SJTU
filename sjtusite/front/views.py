@@ -36,7 +36,8 @@ class SigninView(View):
             user = User.objects.filter(username=username,password=password).first()
             if user:
                 request.session['user_id'] = user.id
-                return redirect(reverse('home'))
+                # return redirect(reverse('home'))
+                return render(request, 'front_tips.html')
             else:
                 print('用户名或者密码错误！')
                 # messages.add_message(request,messages.INFO,'用户名或者密码错误！')
@@ -60,7 +61,7 @@ class SignupView(View):
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('home'))
+            return redirect(reverse('front:signin'))
         else:
             print(form.errors.get_json_data())
             return redirect(reverse('front:signup'))
@@ -78,7 +79,8 @@ class SigninView_Owner(View):
             user = Owner.objects.filter(username=username,password=password).first()
             if user:
                 request.session['owner_id'] = user.id
-                return redirect(reverse('home'))
+                # return redirect(reverse('home'))
+                return render(request, 'front_tips.html')
             else:
                 print('用户名或者密码错误！')
                 # messages.add_message(request,messages.INFO,'用户名或者密码错误！')
@@ -102,7 +104,7 @@ class SignupView_Owner(View):
         form = SignupFormOwner(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('home'))##
+            return redirect(reverse('front:signinowner'))##
         else:
             print(form.errors.get_json_data())
             return redirect(reverse('front:signupowner'))

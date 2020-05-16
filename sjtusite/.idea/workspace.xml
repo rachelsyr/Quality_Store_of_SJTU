@@ -2,19 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c41058b-3e04-47ac-a93c-ce62fd8e49df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/valid.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/front_tips.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/front_base_old.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/front_cpwd.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/front/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front_blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_blog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front_signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_signin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front_signin_owner.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_signin_owner.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front_signup_owner.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_signup_owner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front_tips.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_tips.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front_user_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_user_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front_video.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front_video.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +42,17 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="roles" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
@@ -73,6 +87,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="FullScreen" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -232,6 +247,28 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:postgres@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:postgres@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@46164eed" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -244,7 +281,9 @@
       <updated>1587835577186</updated>
       <workItem from="1587835578526" duration="14476000" />
       <workItem from="1588144149908" duration="1616000" />
-      <workItem from="1589450734936" duration="11380000" />
+      <workItem from="1589450734936" duration="11618000" />
+      <workItem from="1589552278116" duration="5097000" />
+      <workItem from="1589592353601" duration="4753000" />
     </task>
     <servers />
   </component>
@@ -260,47 +299,47 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="304" y="158" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589450742663">
-      <screen x="0" y="23" width="1680" height="948" />
+    <state x="572" y="156" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589594553957">
+      <screen x="0" y="23" width="1680" height="947" />
     </state>
-    <state x="304" y="158" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.947@0.23.1680.947" timestamp="1588144691720" />
+    <state x="572" y="156" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.947@0.23.1680.947" timestamp="1589594553957" />
     <state x="304" y="158" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.948@0.23.1680.948" timestamp="1589450742663" />
-    <state width="1638" height="192" key="GridCell.Tab.0.bottom" timestamp="1589468508301">
-      <screen x="0" y="23" width="1680" height="955" />
+    <state width="1638" height="192" key="GridCell.Tab.0.bottom" timestamp="1589595469587">
+      <screen x="0" y="23" width="1680" height="947" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587880179585" />
-    <state width="1638" height="192" key="GridCell.Tab.0.bottom/0.23.1680.947@0.23.1680.947" timestamp="1588145769699" />
+    <state width="1638" height="192" key="GridCell.Tab.0.bottom/0.23.1680.947@0.23.1680.947" timestamp="1589595469587" />
     <state width="1638" height="192" key="GridCell.Tab.0.bottom/0.23.1680.948@0.23.1680.948" timestamp="1589450808501" />
-    <state width="1638" height="192" key="GridCell.Tab.0.bottom/0.23.1680.955@0.23.1680.955" timestamp="1589468508301" />
-    <state width="1638" height="192" key="GridCell.Tab.0.center" timestamp="1589468508300">
-      <screen x="0" y="23" width="1680" height="955" />
+    <state width="1638" height="192" key="GridCell.Tab.0.bottom/0.23.1680.955@0.23.1680.955" timestamp="1589468742194" />
+    <state width="1638" height="192" key="GridCell.Tab.0.center" timestamp="1589595469586">
+      <screen x="0" y="23" width="1680" height="947" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587880179583" />
-    <state width="1638" height="192" key="GridCell.Tab.0.center/0.23.1680.947@0.23.1680.947" timestamp="1588145769698" />
+    <state width="1638" height="192" key="GridCell.Tab.0.center/0.23.1680.947@0.23.1680.947" timestamp="1589595469586" />
     <state width="1638" height="192" key="GridCell.Tab.0.center/0.23.1680.948@0.23.1680.948" timestamp="1589450808500" />
-    <state width="1638" height="192" key="GridCell.Tab.0.center/0.23.1680.955@0.23.1680.955" timestamp="1589468508300" />
-    <state width="1638" height="192" key="GridCell.Tab.0.left" timestamp="1589468508299">
-      <screen x="0" y="23" width="1680" height="955" />
+    <state width="1638" height="192" key="GridCell.Tab.0.center/0.23.1680.955@0.23.1680.955" timestamp="1589468742193" />
+    <state width="1638" height="192" key="GridCell.Tab.0.left" timestamp="1589595469586">
+      <screen x="0" y="23" width="1680" height="947" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587880179582" />
-    <state width="1638" height="192" key="GridCell.Tab.0.left/0.23.1680.947@0.23.1680.947" timestamp="1588145769697" />
+    <state width="1638" height="192" key="GridCell.Tab.0.left/0.23.1680.947@0.23.1680.947" timestamp="1589595469586" />
     <state width="1638" height="192" key="GridCell.Tab.0.left/0.23.1680.948@0.23.1680.948" timestamp="1589450808500" />
-    <state width="1638" height="192" key="GridCell.Tab.0.left/0.23.1680.955@0.23.1680.955" timestamp="1589468508299" />
-    <state width="1638" height="192" key="GridCell.Tab.0.right" timestamp="1589468508300">
-      <screen x="0" y="23" width="1680" height="955" />
+    <state width="1638" height="192" key="GridCell.Tab.0.left/0.23.1680.955@0.23.1680.955" timestamp="1589468742192" />
+    <state width="1638" height="192" key="GridCell.Tab.0.right" timestamp="1589595469587">
+      <screen x="0" y="23" width="1680" height="947" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587880179584" />
-    <state width="1638" height="192" key="GridCell.Tab.0.right/0.23.1680.947@0.23.1680.947" timestamp="1588145769698" />
+    <state width="1638" height="192" key="GridCell.Tab.0.right/0.23.1680.947@0.23.1680.947" timestamp="1589595469587" />
     <state width="1638" height="192" key="GridCell.Tab.0.right/0.23.1680.948@0.23.1680.948" timestamp="1589450808501" />
-    <state width="1638" height="192" key="GridCell.Tab.0.right/0.23.1680.955@0.23.1680.955" timestamp="1589468508300" />
+    <state width="1638" height="192" key="GridCell.Tab.0.right/0.23.1680.955@0.23.1680.955" timestamp="1589468742193" />
     <state x="349" y="135" key="SettingsEditor" timestamp="1588144215361">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
     <state x="349" y="135" key="SettingsEditor/0.23.1680.947@0.23.1680.947" timestamp="1588144215361" />
-    <state x="519" y="329" key="com.intellij.ide.util.TipDialog" timestamp="1588144150826">
+    <state x="519" y="329" key="com.intellij.ide.util.TipDialog" timestamp="1589592354245">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
-    <state x="519" y="329" key="com.intellij.ide.util.TipDialog/0.23.1680.947@0.23.1680.947" timestamp="1588144150826" />
+    <state x="519" y="329" key="com.intellij.ide.util.TipDialog/0.23.1680.947@0.23.1680.947" timestamp="1589592354245" />
     <state x="505" y="231" width="670" height="676" key="search.everywhere.popup" timestamp="1589460631358">
       <screen x="0" y="23" width="1680" height="951" />
     </state>
